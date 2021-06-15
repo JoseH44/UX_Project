@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+.item {
+  padding: 10px;
+}
+
+.botonL {
+  display: block;
+  border: 0;
+  font-size: 16px;
+  line-height: 1;
+  padding: 6px 18px;
+  border-radius: 30px;
+  background-color: #ffffff;
+  cursor: pointer;
+  color: #efda21;
+  border: solid 1px #efda21;
+}
+
+.botonR {
+  display: block;
+  border: 0;
+  font-size: 16px;
+  line-height: 1;
+  padding: 6px 18px;
+  border-radius: 30px;
+  background-color: #efda21;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.Wrap {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  min-height: 5vh;
+}
