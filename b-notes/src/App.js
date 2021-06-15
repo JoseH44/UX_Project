@@ -1,11 +1,9 @@
-import logo from "./logo.svg";
 import "./App.css";
-import firebase from "firebase";
-import { StyledFirebaseAuth } from "react-firebaseui";
 import React, { useState } from "react";
 import { render } from "@testing-library/react";
-import Button from "react-bootstrap/Button";
+import firebase from "firebase";
 import "bootstrap/dist/css/bootstrap.min.css";
+import SignUp from "./Components/SignUp";
 
 function App() {
   return (
@@ -19,6 +17,7 @@ function App() {
             <button className="botonR">Registrarse</button>
           </div>
         </div>
+        <SignUp />
       </div>
     </>
   );
