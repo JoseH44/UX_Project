@@ -10,6 +10,7 @@ import Home from "./Components/Home";
 
 function App() {
   const [showLogIn, setShowLogIn] = useState("Home");
+  const [visibleHeader, setvisibleHeader] = useState(true);
 
   const renderComponent = () => {
     switch (showLogIn) {
