@@ -4,21 +4,29 @@ import { render } from "@testing-library/react";
 import firebase from "firebase";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SignUp from "./Components/SignUp";
+import Header from "./Components/Header";
+import LogIn from "./Components/LogIn";
+import Home from "./Components/Home";
 
 function App() {
+  const [showLogIn, setShowLogIn] = useState("Home");
+
+  const renderComponent = () => {
+    switch (showLogIn) {
+      case "Home":
+        return <Home />;
+      case "Login":
+        return <LogIn />;
+      case "Register":
+        return <SignUp />;
+      default:
+        return <p></p>;
+    }
+  };
   return (
     <>
-      <div className="App">
-        <div className="Wrap">
-          <div className="item">
-            <button className="botonL">Iniciar Sesión</button>
-          </div>
-          <div className="item">
-            <button className="botonR">Registrarse</button>
-          </div>
-        </div>
-        <SignUp />
-      </div>
+      <Header callBackShow={setShowLogIn} />
+      {renderComponent()}
     </>
   );
 }

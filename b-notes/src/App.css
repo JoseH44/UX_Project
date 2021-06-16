@@ -71,4 +71,15 @@
   justify-content: right;
   align-items: center;
   min-height: 5vh;
+  background-color: #282c34;
+}
+
+h2 {
+  color: #efda21;
+}
+
+.nv {
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
