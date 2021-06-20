@@ -1,0 +1,52 @@
+.body {
+  background: rgb(36, 54, 92);
+  border-radius: 10px;
+  width: 260px;
+  height: 190px;
+  position: absolute;
+
+  top: 200px;
+  right: 0px;
+}
+
+.box {
+  width: 1000px;
+  height: 700px;
+  border: 5xp solid black;
+  margin: 20px auto;
+  background: brown;
+}
+
+/*width: 900px;
+  height: 500px;*/
+
+.item {
+  width: 280px;
+  border-radius: 10px;
+  height: 190px;
+  background: rgb(36, 54, 92);
+  position: relative;
+  left: 80%;
+  top: 200px;
+}
+
+.item-Head {
+  width: auto;
+  height: auto;
+  position: relative;
+  left: 680px;
+  top: 200px;
+}
+
+.itemText {
+  width: auto;
+
+  height: auto;
+
+  position: relative;
+  left: 50%;
+  top: 50%;
+}
+
+/*background: rgb(36, 54, 92);
+*/

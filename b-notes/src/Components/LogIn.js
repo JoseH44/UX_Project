@@ -61,7 +61,7 @@ const LogIn = (props) => {
           <div className="divB">
             <br />
             <Button
-              onClick={() => props.callBackShow("Login")}
+              onClick={() => props.callBackShow("Home")}
               variant="success"
               size="lg"
             >

@@ -7,9 +7,11 @@ import SignUp from "./Components/SignUp";
 import Header from "./Components/Header";
 import LogIn from "./Components/LogIn";
 import Home from "./Components/Home";
+import LogGlobal from "./Components/LogGlobal";
+import Main from "./Components/Main";
 
 function App() {
-  const [showLogIn, setShowLogIn] = useState("Home");
+  const [showLogIn, setShowLogIn] = useState("");
   const [visibleHeader, setvisibleHeader] = useState(true);
 
   const renderComponent = () => {
@@ -20,16 +22,15 @@ function App() {
         return <LogIn />;
       case "Register":
         return <SignUp />;
+      case "Main":
+        return <Main />;
       default:
-        return <p></p>;
+        return <p>fdfd</p>;
     }
   };
-  return (
-    <>
-      <Header callBackShow={setShowLogIn} />
-      {renderComponent()}
-    </>
-  );
+  /*<Header callBackShow={setShowLogIn} />
+      {renderComponent()}*/
+  return <LogGlobal />;
 }
 
 export default App;
