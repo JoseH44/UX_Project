@@ -35,6 +35,10 @@ const Main = (props) => {
       email,
     });
   }*/
+
+  function verification() {
+    console.log("sirve de esta maera");
+  }
   const [contenido, setContenido] = useState("");
   const [etiqueta, setEtiqueta] = useState("");
   return (
@@ -45,8 +49,12 @@ const Main = (props) => {
             <h2>B-notes</h2>
           </Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Principal</Nav.Link>
-            <Nav.Link href="#features">Mis Notas</Nav.Link>
+            <Nav.Link onClick={verification} href="">
+              Principal
+            </Nav.Link>
+            <Nav.Link onClick={verification} href="">
+              Mis Notas
+            </Nav.Link>
             <Nav.Item className="justify-content-end">
               <Button className="" onClick={signOut} variant="primary">
                 Cerrar Sesión
