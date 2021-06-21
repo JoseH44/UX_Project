@@ -43,7 +43,7 @@ const LogGlobal = () => {
   });
 
   if (user) {
-    return <Main />;
+    return <Main {...user} />;
   } else {
     return (
       <>

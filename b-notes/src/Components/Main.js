@@ -1,6 +1,5 @@
 import React from "react";
-import LogIn from "./LogIn";
-import SignUp from "./SignUp";
+import LogGlobal from "./LogGlobal";
 import Button from "react-bootstrap/Button";
 import firebase from "firebase";
 import Nav from "react-bootstrap/Nav";
@@ -8,6 +7,13 @@ import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import { useEffect, useState } from "react";
+
+import {
+  FirebaseAppProvider,
+  useFirestoreDocData,
+  useFirestore,
+  useFirestoreCollectionData,
+} from "reactfire";
 
 const signOut = () => {
   firebase
@@ -22,25 +28,38 @@ const signOut = () => {
 };
 
 const Main = (props) => {
-  /*function guardar() {
-    postsGlobal.add({
-      titulo,
-      contenido,
-      likes,
-      userID,
-      email,
-    });
-
-    usuariosCollection.add({
-      email,
-    });
-  }*/
-
-  function verification() {
-    console.log("sirve de esta maera");
-  }
   const [contenido, setContenido] = useState("");
   const [etiqueta, setEtiqueta] = useState("");
+  const [likes, setLikes] = useState(0);
+  const [dislikes, setDislikes] = useState("");
+  //variables del usuario
+  var userID = props.uid;
+  var userName = props.displayName;
+
+  //colección de notas
+  const notas = useFirestore().collection("Apuntes");
+  const notesGlobales = useFirestore().collection("Apuntes");
+  const { status: statusNotesGlobales, data: dataNotesGlobales } =
+    useFirestoreCollectionData(notesGlobales);
+  //función para guardar una nota
+
+  function guardar() {
+    notas.add({
+      contenido,
+      userName,
+      dislikes,
+      etiqueta,
+      likes,
+    });
+
+    setEtiqueta("");
+    setContenido("");
+  }
+
+  function verification() {
+    console.log(props.displayName);
+  }
+
   return (
     <>
       <div>
@@ -91,7 +110,10 @@ const Main = (props) => {
               </Form.Group>
             </Form>
             <br />
-            <Button variant="primary">Guardar</Button> <br />
+            <Button onClick={guardar} variant="primary">
+              Guardar
+            </Button>{" "}
+            <br />
           </Col>
         </div>
       </div>
