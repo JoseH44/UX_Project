@@ -1,0 +1,25 @@
+.nav-button {
+  font-size: 16px;
+
+  border-radius: 30px;
+  border: 2px solid transparent;
+  background-color: rgba(27, 31, 39, 0.219);
+  color: beige;
+  margin-right: 10px;
+  padding: auto;
+}
+
+.container .parent-div2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid rgb(20, 132, 160);
+  margin: 100px auto;
+  margin-bottom: 10px;
+  width: 550px;
+  padding: 50px;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-flow: wrap;
+  border-radius: 5%;
+}
