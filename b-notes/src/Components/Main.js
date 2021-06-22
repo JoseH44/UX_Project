@@ -8,6 +8,8 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import { useEffect, useState } from "react";
 import "../Styles/Main.css";
+import { FaHandPointUp } from "react-icons/fa";
+import { FaHandPointDown } from "react-icons/fa";
 
 import {
   FirebaseAppProvider,
@@ -126,7 +128,7 @@ const Main = (props) => {
   return (
     <>
       <div>
-        <Navbar bg="dark" expand="md" fixed="top" variant="dark">
+        <Navbar bg="dark" expand="sm md lg " fixed="top" variant="dark">
           <Navbar.Brand href="#home">
             <h2>B-notes</h2>
           </Navbar.Brand>
@@ -186,18 +188,28 @@ const Main = (props) => {
           <div>
             {dataNotesCollection.map((note) => (
               <div className="post" key={note.NO_ID_FIELD}>
-                <h6>Post por: {note.userName}</h6>
+                <h6>Nota por: {note.userName}</h6>
                 <h4>{note.etiqueta}</h4>
                 <br />
                 <p>{note.contenido}</p>
 
                 <br />
-                <button onClick={() => incrementLike(note.NO_ID_FIELD)}>
+                <button
+                  className="like-button"
+                  onClick={() => incrementLike(note.NO_ID_FIELD)}
+                >
+                  <FaHandPointUp />
                   {note.likes}
                 </button>
-                <button onClick={() => incrementDisLike(note.NO_ID_FIELD)}>
+
+                <button
+                  className="dislike-button"
+                  onClick={() => incrementDisLike(note.NO_ID_FIELD)}
+                >
+                  <FaHandPointDown />
                   {note.dislikes}
                 </button>
+
                 <br />
               </div>
             ))}
@@ -224,9 +236,10 @@ const Main = (props) => {
                             rows={3}
                           />
                         </Form.Group>
-                        <button>{myNote.likes}</button>
-                        <button>{myNote.dislikes}</button>
                       </Form>
+                      <button>{myNote.likes}</button>
+                      <button>{myNote.dislikes}</button>
+                      <br />
                       <br />
                       <Button onClick={guardar} variant="primary">
                         Guardar

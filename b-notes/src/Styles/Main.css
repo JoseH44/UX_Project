@@ -23,3 +23,23 @@
   flex-flow: wrap;
   border-radius: 5%;
 }
+
+.like-button {
+  font-size: 16px;
+
+  border-radius: 30px;
+  border: 2px solid transparent;
+  background-color: rgb(20, 34, 161);
+  color: beige;
+  margin-right: 5px;
+}
+
+.dislike-button {
+  font-size: 16px;
+
+  border-radius: 30px;
+  border: 2px solid transparent;
+  background-color: rgb(187, 74, 22);
+  color: beige;
+  margin-right: 5px;
+}
