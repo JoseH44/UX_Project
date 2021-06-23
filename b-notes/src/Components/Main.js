@@ -70,11 +70,9 @@ const Main = (props) => {
 
   //función para probar el onClick
   function filter() {
-    if (filtering === "") {
-      console.log(seacrh);
-      setFiltering("yes");
-      setSeacrh("");
-    }
+    console.log(seacrh);
+    setFiltering("yes");
+    setSeacrh("");
   }
   //query para el filtrado
   const filterQuery = useFirestore()
@@ -222,7 +220,6 @@ const Main = (props) => {
       <div>
         {filtering === "yes" ? (
           <div>
-            sss
             {statusFilter === "success" &&
               dataFilterNotes.map((noteFilter) => (
                 <div className="post" key={noteFilter.NO_ID_FIELD}>
