@@ -6,6 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
+import FormControl from "react-bootstrap/FormControl";
 import { useEffect, useState } from "react";
 import "../Styles/Main.css";
 import { FaHandPointUp } from "react-icons/fa";
@@ -36,7 +37,9 @@ const Main = (props) => {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [option, setoption] = useState("");
+  const [filtering, setFiltering] = useState("no");
   const [changeEtiqueta, setChangeEtiqueta] = useState();
+  const [seacrh, setSeacrh] = useState("");
   const [alreadyLiked, setAlreadyLiked] = useState(false);
   const [alreadyDisliked, setAlreadyDisliked] = useState(false);
   //variables del usuario
@@ -63,6 +66,13 @@ const Main = (props) => {
 
     setEtiqueta("");
     setContenido("");
+  }
+
+  //función para probar el onClick
+  function filter() {
+    console.log(seacrh);
+    setFiltering("yes");
+    setSeacrh("");
   }
 
   var db = firebase.firestore();
@@ -103,10 +113,12 @@ const Main = (props) => {
 
   function verification1() {
     setoption("global");
+    setFiltering("");
   }
 
   function verification2() {
     setoption("mine");
+    setFiltering("");
   }
 
   //notas que no son mías
@@ -128,7 +140,7 @@ const Main = (props) => {
   return (
     <>
       <div>
-        <Navbar bg="dark" expand="sm md lg " fixed="top" variant="dark">
+        <Navbar bg="dark" expand="sm" fixed="top" variant="dark">
           <Navbar.Brand href="#home">
             <h2>B-notes</h2>
           </Navbar.Brand>
@@ -140,8 +152,24 @@ const Main = (props) => {
             <button onClick={() => verification2()} className="nav-button">
               Mis Notas
             </button>
+            <Form inline>
+              <FormControl
+                type="text"
+                value={seacrh}
+                onChange={(e) => setSeacrh(e.target.value)}
+                placeholder="Buscar Etiqueta"
+                className="mr-sm-2"
+              />
+              <Button onClick={() => filter()} variant="outline-light">
+                Buscar
+              </Button>
+            </Form>
             <Nav.Item className="justify-content-end">
-              <Button className="" onClick={signOut} variant="primary">
+              <Button
+                className="cerrar-sesion"
+                onClick={signOut}
+                variant="primary"
+              >
                 Cerrar Sesión
               </Button>
             </Nav.Item>
@@ -184,71 +212,86 @@ const Main = (props) => {
         </div>
       </div>
       <div>
-        {option === "global" ? (
-          <div>
-            {dataNotesCollection.map((note) => (
-              <div className="post" key={note.NO_ID_FIELD}>
-                <h6>Nota por: {note.userName}</h6>
-                <h4>{note.etiqueta}</h4>
-                <br />
-                <p>{note.contenido}</p>
-
-                <br />
-                <button
-                  className="like-button"
-                  onClick={() => incrementLike(note.NO_ID_FIELD)}
-                >
-                  <FaHandPointUp />
-                  {note.likes}
-                </button>
-
-                <button
-                  className="dislike-button"
-                  onClick={() => incrementDisLike(note.NO_ID_FIELD)}
-                >
-                  <FaHandPointDown />
-                  {note.dislikes}
-                </button>
-
-                <br />
-              </div>
-            ))}
-          </div>
+        {filtering === "yes" ? (
+          <div>{filtering}</div>
         ) : (
           <div>
-            {statMisNotasCollection === "success" &&
-              dataMisNotasCollection.map((myNote) => (
-                <div className="container">
-                  <div className="parent-div2">
-                    <h3>¡Mi Apunte!</h3>
-                    <Col sm={10}>
-                      <Form>
-                        <Form.Group controlId="exampleForm.ControlInput1">
-                          <br />
-                          <Form.Control type="text" value={myNote.etiqueta} />
-                          <br />
-                        </Form.Group>
+            {option === "global" ? (
+              <div>
+                {dataNotesCollection.map((note) => (
+                  <div className="post" key={note.NO_ID_FIELD}>
+                    <h6>Nota por: {note.userName}</h6>
+                    <h4>{note.etiqueta}</h4>
+                    <br />
+                    <p>{note.contenido}</p>
 
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                          <Form.Control
-                            value={myNote.contenido}
-                            as="textarea"
-                            rows={3}
-                          />
-                        </Form.Group>
-                      </Form>
-                      <button>{myNote.likes}</button>
-                      <button>{myNote.dislikes}</button>
-                      <br />
-                      <br />
-                      <Button onClick={guardar} variant="primary">
-                        Guardar
-                      </Button>{" "}
-                      <br />
-                    </Col>
+                    <br />
+                    <button
+                      className="like-button"
+                      onClick={() => incrementLike(note.NO_ID_FIELD)}
+                    >
+                      {note.likes}
+                      <FaHandPointUp />
+                    </button>
+
+                    <button
+                      className="dislike-button"
+                      onClick={() => incrementDisLike(note.NO_ID_FIELD)}
+                    >
+                      {note.dislikes}
+                      <FaHandPointDown />
+                    </button>
+
+                    <br />
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            ) : (
+              <div>
+                {statMisNotasCollection === "success" &&
+                  dataMisNotasCollection.map((myNote) => (
+                    <div className="container">
+                      <div className="parent-div2">
+                        <h3>¡Mi Apunte!</h3>
+                        <Col sm={10}>
+                          <Form>
+                            <Form.Group controlId="exampleForm.ControlInput1">
+                              <br />
+                              <Form.Control
+                                type="text"
+                                value={myNote.etiqueta}
+                              />
+                              <br />
+                            </Form.Group>
+
+                            <Form.Group controlId="exampleForm.ControlTextarea1">
+                              <Form.Control
+                                value={myNote.contenido}
+                                as="textarea"
+                                rows={3}
+                              />
+                            </Form.Group>
+                          </Form>
+                          <button className="like-button">
+                            {myNote.likes}
+                            <FaHandPointUp />
+                          </button>
+                          <button className="dislike-button">
+                            {myNote.dislikes}
+                            <FaHandPointDown />
+                          </button>
+                          <br />
+                          <br />
+                          <Button onClick={guardar} variant="primary">
+                            Guardar
+                          </Button>{" "}
+                          <br />
+                        </Col>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
         )}
       </div>
