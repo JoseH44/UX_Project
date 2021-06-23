@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import "../Styles/Main.css";
 import { FaHandPointUp } from "react-icons/fa";
 import { FaHandPointDown } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 import {
   FirebaseAppProvider,
@@ -102,6 +103,10 @@ const Main = (props) => {
 
       setAlreadyLiked(true);
     }
+  }
+
+  function deleteNote(docN) {
+    db.collection("Apuntes").doc(docN).delete();
   }
 
   //funcion para incrementar el dislike
@@ -227,6 +232,7 @@ const Main = (props) => {
                   <h4>{noteFilter.etiqueta}</h4>
                   <br />
                   <p>{noteFilter.contenido}</p>
+                  {noteFilter.fecha_creada.toDate().toDateString()}
 
                   <br />
                   <button
@@ -259,7 +265,7 @@ const Main = (props) => {
                     <h4>{note.etiqueta}</h4>
                     <br />
                     <p>{note.contenido}</p>
-
+                    {note.fecha_creada.toDate().toDateString()}
                     <br />
                     <button
                       className="like-button"
@@ -317,11 +323,18 @@ const Main = (props) => {
                           </button>
                           <br />
                           <br />
-                          <Button onClick={guardar} variant="primary">
-                            Guardar
-                          </Button>{" "}
-                          <br />
                         </Col>
+                        <Button onClick={guardar} variant="primary">
+                          Guardar
+                        </Button>{" "}
+                        <br />
+                        <button
+                          onClick={() => deleteNote(myNote.NO_ID_FIELD)}
+                          className="delete-button"
+                        >
+                          <FaRegTrashAlt />
+                          Eliminar
+                        </button>{" "}
                       </div>
                     </div>
                   ))}
