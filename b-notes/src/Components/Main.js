@@ -70,10 +70,18 @@ const Main = (props) => {
 
   //función para probar el onClick
   function filter() {
-    console.log(seacrh);
-    setFiltering("yes");
-    setSeacrh("");
+    if (filtering === "") {
+      console.log(seacrh);
+      setFiltering("yes");
+      setSeacrh("");
+    }
   }
+  //query para el filtrado
+  const filterQuery = useFirestore()
+    .collection("Apuntes")
+    .where("etiqueta", "==", seacrh.toString());
+  const { status: statusFilter, data: dataFilterNotes } =
+    useFirestoreCollectionData(filterQuery);
 
   var db = firebase.firestore();
   const increment = firebase.firestore.FieldValue.increment(1);
@@ -213,7 +221,37 @@ const Main = (props) => {
       </div>
       <div>
         {filtering === "yes" ? (
-          <div>{filtering}</div>
+          <div>
+            sss
+            {statusFilter === "success" &&
+              dataFilterNotes.map((noteFilter) => (
+                <div className="post" key={noteFilter.NO_ID_FIELD}>
+                  <h6>Nota por: {noteFilter.userName}</h6>
+                  <h4>{noteFilter.etiqueta}</h4>
+                  <br />
+                  <p>{noteFilter.contenido}</p>
+
+                  <br />
+                  <button
+                    className="like-button"
+                    onClick={() => incrementLike(noteFilter.NO_ID_FIELD)}
+                  >
+                    {noteFilter.likes}
+                    <FaHandPointUp />
+                  </button>
+
+                  <button
+                    className="dislike-button"
+                    onClick={() => incrementDisLike(noteFilter.NO_ID_FIELD)}
+                  >
+                    {noteFilter.dislikes}
+                    <FaHandPointDown />
+                  </button>
+
+                  <br />
+                </div>
+              ))}
+          </div>
         ) : (
           <div>
             {option === "global" ? (
