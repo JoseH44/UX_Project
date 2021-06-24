@@ -12,6 +12,7 @@ import "../Styles/Main.css";
 import { FaHandPointUp } from "react-icons/fa";
 import { FaHandPointDown } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { BiPlusCircle } from "react-icons/bi";
 
 import {
   FirebaseAppProvider,
@@ -261,12 +262,20 @@ const Main = (props) => {
               <div>
                 {dataNotesCollection.map((note) => (
                   <div className="post" key={note.NO_ID_FIELD}>
-                    <h6>Nota por: {note.userName}</h6>
-                    <h4>{note.etiqueta}</h4>
+                    <div className="header">
+                      <h5>Nota por: {note.userName}</h5>
+                    </div>
+                    <div className="etiqueta">
+                      <h5>{note.etiqueta}</h5>
+                    </div>
+
                     <br />
-                    <p>{note.contenido}</p>
-                    {note.fecha_creada.toDate().toDateString()}
+                    <div className="content">
+                      <p>{note.contenido}</p>
+                    </div>
                     <br />
+                    <p>{note.fecha_creada.toDate().toDateString()}</p>
+
                     <button
                       className="like-button"
                       onClick={() => incrementLike(note.NO_ID_FIELD)}

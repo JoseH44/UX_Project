@@ -59,8 +59,65 @@
   color: beige;
 }
 
+.post {
+  justify-content: left;
+  align-items: center;
+  border: 2px solid transparent;
+  margin: 30px auto;
+  width: 500px;
+  padding: 40px;
+  padding-top: 10px;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-flow: wrap;
+  border-radius: 5%;
+  padding: auto;
+  word-break: break-word;
+  background-color: rgba(90, 52, 107, 0.438);
+}
+
+.post .header {
+  width: auto;
+  height: auto;
+  align-items: center;
+  background-color: rgb(214, 218, 216);
+  margin-bottom: -10px;
+  border: 1px solid rgb(214, 218, 216);
+  border-radius: 5%;
+  text-align: start;
+}
+
+.post .etiqueta {
+  width: auto;
+  height: auto;
+  align-items: center;
+  background-color: rgb(212, 135, 19);
+  margin-top: 20px;
+  border: 1px solid rgb(212, 135, 19);
+  border-radius: 5%;
+  text-align: start;
+}
+
+.post .content {
+  width: auto;
+  height: auto;
+  align-items: center;
+  background-color: rgb(6, 116, 189);
+  margin-top: 0px;
+  border: 1px solid rgb(6, 116, 189);
+  border-radius: 5%;
+  text-align: start;
+  word-break: break-word;
+}
+
 .delete-button:hover {
   color: blue;
   background: rgb(243, 241, 239);
   border: 2px solid rgb(231, 41, 35);
+}
+
+h5,
+p {
+  font-family: cursive;
+  font-size: 22px;
 }
