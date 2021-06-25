@@ -87,6 +87,10 @@
   text-align: start;
 }
 
+.post .buttons-container {
+  text-align: end;
+}
+
 .post .etiqueta {
   width: auto;
   height: auto;

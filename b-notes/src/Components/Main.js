@@ -276,23 +276,23 @@ const Main = (props) => {
                     <br />
                     <p>{note.fecha_creada.toDate().toDateString()}</p>
 
-                    <button
-                      className="like-button"
-                      onClick={() => incrementLike(note.NO_ID_FIELD)}
-                    >
-                      {note.likes}
-                      <FaHandPointUp />
-                    </button>
+                    <div className="buttons-container">
+                      <button
+                        className="like-button"
+                        onClick={() => incrementLike(note.NO_ID_FIELD)}
+                      >
+                        {note.likes}
+                        <FaHandPointUp />
+                      </button>
 
-                    <button
-                      className="dislike-button"
-                      onClick={() => incrementDisLike(note.NO_ID_FIELD)}
-                    >
-                      {note.dislikes}
-                      <FaHandPointDown />
-                    </button>
-
-                    <br />
+                      <button
+                        className="dislike-button"
+                        onClick={() => incrementDisLike(note.NO_ID_FIELD)}
+                      >
+                        {note.dislikes}
+                        <FaHandPointDown />
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
