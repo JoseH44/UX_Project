@@ -44,6 +44,8 @@ const Main = (props) => {
   const [seacrh, setSeacrh] = useState("");
   const [alreadyLiked, setAlreadyLiked] = useState(false);
   const [alreadyDisliked, setAlreadyDisliked] = useState(false);
+  const [newEtiqueta, setNewEtiqueta] = useState("");
+  const [newContenido, setNewContenido] = useState("");
   //variables del usuario
   var userID = props.uid;
   var userName = props.displayName;
@@ -64,6 +66,7 @@ const Main = (props) => {
       likes,
       userID,
       fecha_creada: firebase.firestore.Timestamp.fromDate(new Date()),
+      fecha_editado: firebase.firestore.Timestamp.fromDate(new Date()),
     });
 
     setEtiqueta("");
@@ -87,9 +90,14 @@ const Main = (props) => {
   const increment = firebase.firestore.FieldValue.increment(1);
   const decrement = firebase.firestore.FieldValue.increment(-1);
 
-  function edit(docApunte) {
-    const notaRef = db.collection("Apuntes").doc(docApunte);
-    notaRef.update({ contenido: contenido, etiqueta: etiqueta });
+  //función para modificar la etiqueta y el contenido de mi nota
+  function modificar(docNote) {
+    const refNote = db.collection("Apuntes").doc(docNote);
+    refNote.update({
+      contenido: newContenido,
+      etiqueta: newEtiqueta,
+      fecha_editado: firebase.firestore.Timestamp.fromDate(new Date()),
+    });
   }
   //funcion para incrementar el like
   function incrementLike(docA) {
@@ -316,19 +324,35 @@ const Main = (props) => {
                               <br />
                               <Form.Control
                                 type="text"
-                                value={myNote.etiqueta}
+                                defaultValue={myNote.etiqueta}
+                                onChange={(e) => setNewEtiqueta(e.target.value)}
                               />
                               <br />
                             </Form.Group>
 
-                            <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Group
+                              className="test"
+                              controlId="exampleForm.ControlTextarea1"
+                            >
                               <Form.Control
-                                value={myNote.contenido}
+                                defaultValue={myNote.contenido}
                                 as="textarea"
                                 rows={3}
+                                onChange={(e) =>
+                                  setNewContenido(e.target.value)
+                                }
                               />
                             </Form.Group>
                           </Form>
+                          <h6>
+                            Creado:{myNote.fecha_creada.toDate().toDateString()}
+                          </h6>
+
+                          <h6>
+                            Editado:
+                            {myNote.fecha_editado.toDate().toDateString()}
+                          </h6>
+                          <br />
                           <button className="like-button">
                             {myNote.likes}
                             <FaHandPointUp />
@@ -340,7 +364,10 @@ const Main = (props) => {
                           <br />
                           <br />
                         </Col>
-                        <Button onClick={guardar} variant="primary">
+                        <Button
+                          onClick={() => modificar(myNote.NO_ID_FIELD)}
+                          variant="primary"
+                        >
                           Guardar
                         </Button>{" "}
                         <br />

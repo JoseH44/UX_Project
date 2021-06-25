@@ -92,6 +92,11 @@
   text-align: end;
 }
 
+.test {
+  width: auto;
+  height: auto;
+}
+
 .post .etiqueta {
   width: auto;
   height: auto;
@@ -134,4 +139,9 @@ h5,
 p {
   font-family: cursive;
   font-size: 22px;
+}
+
+h6 {
+  font-family: cursive;
+  font-size: 15px;
 }
