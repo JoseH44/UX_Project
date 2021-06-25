@@ -47,33 +47,38 @@ const LogGlobal = () => {
   } else {
     return (
       <>
-        <div className="box">
-          <div>
-            <h2>B-Notes</h2>
-            <Image
-              className="imageL nav-bar"
-              src="https://3.bp.blogspot.com/-qf5sgNVDIwM/WrGWbeeukFI/AAAAAAAARq8/t0gKn-8oxykM0D3fpHgI3RtvsPZsyIi2gCK4BGAYYCw/s1600/SketchnotingFINAL.jpg"
-              roundedCircle
-              width="450"
-              height="450"
-            />
-          </div>
-          <Col sm={10}>
-            <div className="item-Head">
-              <p>ffdfsfddddddddddddddd</p>
-            </div>
-
-            <div className="item-Head">
-              <h3>LOGIN/SIGNUP</h3>
-            </div>
-
-            <div className="item">
-              <StyledFirebaseAuth
-                uiConfig={uiConfig}
-                firebaseAuth={firebase.auth()}
+        <div className="wrapper">
+          <div className="box">
+            <div>
+              <h2>B-Notes</h2>
+              <Image
+                className="imageL nav-bar"
+                src="https://3.bp.blogspot.com/-qf5sgNVDIwM/WrGWbeeukFI/AAAAAAAARq8/t0gKn-8oxykM0D3fpHgI3RtvsPZsyIi2gCK4BGAYYCw/s1600/SketchnotingFINAL.jpg"
+                roundedCircle
+                width="450"
+                height="450"
               />
             </div>
-          </Col>
+            <div className="text">
+              <p>
+                Toma los apuntes de tus clases de la forma más sencilla y útil
+                posible
+              </p>
+              <p>¡No esperes más, plasma tus mejores ideas aquí!</p>
+            </div>
+            <Col sm={10}>
+              <div className="item-Head">
+                <h3>LOGIN/SIGNUP</h3>
+              </div>
+
+              <div className="item">
+                <StyledFirebaseAuth
+                  uiConfig={uiConfig}
+                  firebaseAuth={firebase.auth()}
+                />
+              </div>
+            </Col>
+          </div>
         </div>
       </>
     );

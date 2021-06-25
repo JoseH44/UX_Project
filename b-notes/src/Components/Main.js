@@ -229,30 +229,37 @@ const Main = (props) => {
             {statusFilter === "success" &&
               dataFilterNotes.map((noteFilter) => (
                 <div className="post" key={noteFilter.NO_ID_FIELD}>
-                  <h6>Nota por: {noteFilter.userName}</h6>
-                  <h4>{noteFilter.etiqueta}</h4>
-                  <br />
-                  <p>{noteFilter.contenido}</p>
-                  {noteFilter.fecha_creada.toDate().toDateString()}
+                  <div className="header">
+                    <h5>Nota por: {noteFilter.userName}</h5>
+                  </div>
+                  <div className="etiqueta">
+                    <h5>{noteFilter.etiqueta}</h5>
+                  </div>
 
                   <br />
-                  <button
-                    className="like-button"
-                    onClick={() => incrementLike(noteFilter.NO_ID_FIELD)}
-                  >
-                    {noteFilter.likes}
-                    <FaHandPointUp />
-                  </button>
-
-                  <button
-                    className="dislike-button"
-                    onClick={() => incrementDisLike(noteFilter.NO_ID_FIELD)}
-                  >
-                    {noteFilter.dislikes}
-                    <FaHandPointDown />
-                  </button>
-
+                  <div className="content">
+                    <p>{noteFilter.contenido}</p>
+                  </div>
                   <br />
+                  <p>{noteFilter.fecha_creada.toDate().toDateString()}</p>
+
+                  <div className="buttons-container">
+                    <button
+                      className="like-button"
+                      onClick={() => incrementLike(noteFilter.NO_ID_FIELD)}
+                    >
+                      {noteFilter.likes}
+                      <FaHandPointUp />
+                    </button>
+
+                    <button
+                      className="dislike-button"
+                      onClick={() => incrementDisLike(noteFilter.NO_ID_FIELD)}
+                    >
+                      {noteFilter.dislikes}
+                      <FaHandPointDown />
+                    </button>
+                  </div>
                 </div>
               ))}
           </div>

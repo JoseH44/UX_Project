@@ -80,11 +80,12 @@
   width: auto;
   height: auto;
   align-items: center;
-  background-color: rgb(214, 218, 216);
+  background-color: rgba(214, 218, 216, 0.651);
   margin-bottom: -10px;
-  border: 1px solid rgb(214, 218, 216);
+  border: 1px solid rgb(214, 218, 216, 0.651);
   border-radius: 5%;
   text-align: start;
+  word-break: break-word;
 }
 
 .post .buttons-container {
@@ -95,29 +96,38 @@
   width: auto;
   height: auto;
   align-items: center;
-  background-color: rgb(212, 135, 19);
+  background-color: rgba(50, 87, 15, 0.486);
   margin-top: 20px;
-  border: 1px solid rgb(212, 135, 19);
+  border: 1px solid rgba(50, 87, 15, 0.486);
   border-radius: 5%;
   text-align: start;
+  word-break: break-word;
+  color: black;
+  text-align: center;
 }
 
 .post .content {
   width: auto;
   height: auto;
   align-items: center;
-  background-color: rgb(6, 116, 189);
+  background-color: rgba(90, 52, 107, 0.438);
   margin-top: 0px;
-  border: 1px solid rgb(6, 116, 189);
-  border-radius: 5%;
+  border: 1px solid rgba(90, 52, 107, 0.281);
+  border-radius: 0%;
   text-align: start;
   word-break: break-word;
+
+  color: rgb(255, 255, 255);
 }
 
 .delete-button:hover {
   color: blue;
   background: rgb(243, 241, 239);
   border: 2px solid rgb(231, 41, 35);
+}
+
+h2 {
+  font-size: 35px;
 }
 
 h5,
